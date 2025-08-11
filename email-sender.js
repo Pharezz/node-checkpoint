@@ -1,0 +1,25 @@
+const nodemailer = require('nodemailer');
+
+// Replace with your own email service and credentials
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'your-email@gmail.com',
+    pass: 'your-app-password-or-real-password',
+  }
+});
+
+let mailOptions = {
+  from: 'your-email@gmail.com',
+  to: 'your-email@gmail.com',
+  subject: 'Test Email from Node.js',
+  text: 'Hello! This is a test email sent from Node.js',
+};
+
+transporter.sendMail(mailOptions, (err, info) => {
+  if (err) {
+    console.error('Error sending email:', err);
+  } else {
+    console.log('Email sent:', info.response);
+  }
+});
